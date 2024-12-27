@@ -167,9 +167,9 @@ INSERT INTO orders (id, customer_id, date, item, status, total, shipped_from, sh
 
 - Application 1 - Find the name and price of the least ordered product in each store/branch
 - Application 2 - Find the email and name of the customers who have ordered more than 10 times
-- Application 3 - Find the total number of products in stock in for each supplier
+- Application 3 - Find the total number of products in stock for each supplier
 
-### Application 1 - Find the name and price pf the cheapest product in each category
+### Application 1 - Find the name and price of the cheapest product in each category
 
 Horizontally fragment the products table category wise
 
@@ -178,3 +178,91 @@ Simple predicates → `category`
 Category = {Clothing, Electronics, Books, Toys, Furniture}
 
 m1: Category = Clothing <br>
+m2: Category = Electronics <br>
+m3: Category = Books <br>
+m4: Category = Toys <br>
+m5: Category = Furniture <br>
+
+
+
+```sql
+--
+-- Makueni
+--
+SELECT * FROM inventory WHERE category_id = 2; -- Electronics
+
+SELECT * FROM inventory WHERE category_id = 5; -- Furniture
+
+
+--
+-- Nairobi
+--
+SELECT * FROM inventory WHERE category_id = 1; -- Clothing
+
+SELECT * FROM inventory WHERE category_id = 4; -- Toys
+
+
+--
+-- Machakos
+--
+SELECT * FROM inventory WHERE category_id = 3; -- Books
+```
+
+### Application 2 - Find the email and name of the customers who have ordered more than 3 times
+
+Horizontally fragment the customers table orders wise
+
+Simple predicates → `orders_count` > 3
+
+m1: Orders_count > 3 <br />
+m2: Orders_count <= 3
+
+
+
+```sql
+SELECT * FROM customers WHERE orders_count > 10;
+
+SELECT * FROM customers WHERE orders_count <= 10;
+```
+
+### Application 3 - Find the total number of products in stock for each supplier
+
+Horizontally fragment the inventory table supplier wise
+
+Simple predicates → `supplier`
+
+m1: Supplier = Supplier A <br />
+m2: Supplier = Supplier B <br />
+m3: Supplier = Supplier C <br />
+m4: Supplier = Supplier D <br />
+m5: Supplier = Supplier E
+
+
+
+```sql
+SELECT * FROM inventory WHERE supplier_id = 1; -- Supplier A
+
+
+SELECT * FROM inventory WHERE supplier_id = 2; -- Supplier B
+
+
+SELECT * FROM inventory WHERE supplier_id = 3; -- Supplier C
+
+
+SELECT * FROM inventory WHERE supplier_id = 4; -- Supplier D
+
+
+SELECT * FROM inventory WHERE supplier_id = 5; -- Supplier E
+```
+
+## Query Execution Frequencies
+
+|     | Machakos | Nairobi | Nakuru | Total |
+| --- | -------- | ------- | ------ | ----- |
+| Q1  |    0     |   8     | 8      | 16     |
+| Q2  |     8    |   10     |  5     | 23     |
+| Q3  |    0     |   15     |  7     |   22  |
+
+## Reconstruction
+
+These are the views that have been implemented in the decision site.
