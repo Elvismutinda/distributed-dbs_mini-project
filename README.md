@@ -4,10 +4,6 @@
 <br />
 
 
-<br />
-<br />
-
-
 Individually or in a group of at most two, create a distributed heterogeneous database environment comprising three sites with three different participating database platforms, and at least two different operating systems.
 
 Use the above environment to demonstrate your grasp of fragmentation and reconstruction. Think of a domain area comprising of at least four distributed relations. Write out your applications/reports and use them to perform fragmentation. Write out the applications/reports into calculus queries. Come up with appropriate query access frequencies of your choice. After working out the fragmentation, allocate the fragments by implementing them physically in the participating databases. Choose one of the sites to be the decision site and perform reconstruction using either views, functions, stored procedures or any other technique.
