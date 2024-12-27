@@ -253,11 +253,11 @@ SELECT * FROM inventory WHERE supplier_id = 5; -- Supplier E
 
 ## Query Execution Frequencies
 
-|     | Machakos | Nairobi | Nakuru | Total |
-| --- | -------- | ------- | ------ | ----- |
-| Q1  |    0     |   8     | 8      | 16     |
-| Q2  |     8    |   10     |  5     | 23     |
-| Q3  |    0     |   15     |  7     |   22  |
+|     | Machakos | Nairobi | Makueni | Total |
+| --- | -------- | ------- | ------- | ----- |
+| Q1  |    0     |   8     | 8       | 16    |
+| Q2  |    8     |   10    | 5       | 23    |
+| Q3  |    0     |   15    | 7       | 22    |
 
 ## Reconstruction
 
