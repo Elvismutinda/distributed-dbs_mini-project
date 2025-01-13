@@ -10,7 +10,7 @@ Use the above environment to demonstrate your grasp of fragmentation and reconst
 
 ## Domain - Ecommerce
 
-
+_The company Soi is an online retailer that sells a variety of products such as clothing, electronics, books, and home appliances.._
 
 | 3 sites | 3 different Database Platforms | at least 2 Operating Systems | addresses |
 | --- | --- | --- | --- |
@@ -262,3 +262,102 @@ SELECT * FROM inventory WHERE supplier_id = 5; -- Supplier E
 ## Reconstruction
 
 These are the views that have been implemented in the decision site.
+
+### category_cheapest
+
+```sql
+CREATE VIEW category_cheapest
+AS
+
+-- Create a subquery to get the lowest price for each category
+WITH min_price AS (
+  SELECT category_id, MIN(price) AS price
+  FROM (
+    SELECT DISTINCT * FROM inventory_makueni
+    UNION ALL
+    SELECT DISTINCT * FROM inventory_nairobi
+    UNION ALL
+    SELECT DISTINCT * FROM inventory_machakos
+  ) AS inventory_all
+  GROUP BY category_id
+)
+
+-- Join the subquery with the fragmented tables to get the name and price of the cheapest product in each category
+SELECT i.category_id AS category, i.name AS item, i.price
+FROM (
+  SELECT DISTINCT * FROM inventory_makueni
+  UNION ALL
+  SELECT DISTINCT * FROM inventory_nairobi
+  UNION ALL
+  SELECT DISTINCT * FROM inventory_machakos
+) AS i
+JOIN min_price AS m
+ON i.category_id = m.category_id AND i.price = m.price
+ORDER BY i.category_id;
+```
+
+### triple_customers
+
+```sql
+CREATE VIEW triple_customers
+AS
+SELECT id, email, name FROM customers_orders_gt_3;
+```
+
+### supplier_products
+
+```sql
+CREATE VIEW supplier_products
+AS
+-- Combine the fragments using UNION ALL
+WITH combined_inventory AS (
+    SELECT * FROM inventory_supplier_A
+    UNION ALL
+    SELECT * FROM inventory_supplier_B
+    UNION ALL
+    SELECT * FROM inventory_supplier_C
+    UNION ALL
+    SELECT * FROM inventory_supplier_D
+    UNION ALL
+    SELECT * FROM inventory_supplier_E
+)
+
+-- Calculate the total quantity for each supplier
+SELECT
+    'Supplier A' AS supplier,
+    SUM(quantity) AS total_products
+FROM combined_inventory
+WHERE supplier_id = 1
+
+UNION ALL
+
+SELECT
+    'Supplier B' AS supplier,
+    SUM(quantity) AS total_products
+FROM combined_inventory
+WHERE supplier_id = 2
+
+UNION ALL
+
+SELECT
+    'Supplier C' AS supplier,
+    SUM(quantity) AS total_products
+FROM combined_inventory
+WHERE supplier_id = 3
+
+UNION ALL
+
+SELECT
+    'Supplier D' AS supplier,
+    SUM(quantity) AS total_products
+FROM combined_inventory
+WHERE supplier_id = 4
+
+UNION ALL
+
+SELECT
+    'Supplier E' AS supplier,
+    SUM(quantity) AS total_products
+FROM combined_inventory
+WHERE supplier_id = 5;
+```
