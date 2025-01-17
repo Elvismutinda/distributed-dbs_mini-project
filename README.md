@@ -66,6 +66,8 @@ docker compose down
 docker exec -it machakos_site psql -U elvis87 -d soishop
 
 # automatically enters the soishop database using the "-d soishop"
+# if it doesn't use this:
+\c soishop;
 ```
 
 ### MySQL
