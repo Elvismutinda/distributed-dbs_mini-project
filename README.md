@@ -236,7 +236,7 @@ INSERT INTO orders (id, customer_id, date, item, status, total, shipped_from, sh
 
 ### Application 1 - Find the name and price of the cheapest product in each category
 
-Horizontally fragment the products table category wise
+Horizontally fragment the inventory table category wise
 
 Simple predicates → `category`
 
@@ -328,9 +328,7 @@ SELECT * FROM inventory WHERE supplier_id = 5; -- Supplier E
 | Q2  |    8     |   10    | 5       | 23    |
 | Q3  |    0     |   15    | 7       | 22    |
 
-## Reconstruction
-
-These are the views that have been implemented in the decision site.
+## Application Views
 
 ### category_cheapest
 
@@ -429,4 +427,54 @@ SELECT
     SUM(quantity) AS total_products
 FROM combined_inventory
 WHERE supplier_id = 5;
+```
+
+## Reconstruction
+
+These are the views that have been implemented in the decision site.
+
+### Application 1
+
+```sql
+CREATE VIEW inventory_c_reconstructed AS
+-- Combine the fragments using UNION ALL
+SELECT DISTINCT * 
+FROM inventory_makueni
+UNION ALL
+SELECT DISTINCT * 
+FROM inventory_nairobi
+UNION ALL
+SELECT DISTINCT * 
+FROM inventory_machakos;
+```
+
+### Application 2
+
+```sql
+CREATE VIEW customers_reconstructed AS
+SELECT * 
+FROM customers_orders_gt_3
+UNION ALL
+SELECT * 
+FROM customers_orders_lte_3;
+
+```
+
+### Application 3
+
+```sql
+CREATE VIEW inventory_s_reconstructed AS
+-- Combine the fragments using UNION ALL
+SELECT *
+FROM (
+    SELECT * FROM inventory_supplier_A
+    UNION ALL
+    SELECT * FROM inventory_supplier_B
+    UNION ALL
+    SELECT * FROM inventory_supplier_C
+    UNION ALL
+    SELECT * FROM inventory_supplier_D
+    UNION ALL
+    SELECT * FROM inventory_supplier_E
+) AS combined_inventory;
 ```
