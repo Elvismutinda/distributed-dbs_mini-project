@@ -12,12 +12,45 @@ Use the above environment to demonstrate your grasp of fragmentation and reconst
 
 _The company Soi is an online retailer that sells a variety of products such as clothing, electronics, books, and home appliances.._
 
-| 3 sites | 3 different Database Platforms | at least 2 Operating Systems | addresses |
+| 3 sites | 3 different Database Platforms | at least 2 Operating Systems | hostnames |
 | --- | --- | --- | --- |
-| Machakos (Decision site) | PostgreSQL | Windows | localhost |
-| Nairobi  | MySQL | Linux | 24.144.94.53 |
-| Makueni | MariaDB | Linux | 146.190.146.117 |
+| Machakos (Decision site) | PostgreSQL | Windows | machakos_site |
+| Nairobi  | MySQL | Linux | nairobi_site |
+| Makueni | SQLite | Linux | makueni_site |
 
+## Docker Setup
+
+A docker-compose file was used to create containers for each site and initialise the databases by creating the tables and defining the relations.
+
+The containers are interconnected over a bridged docker network that I called `soi_network`
+
+To run the databases services, run the following commands in your terminal
+
+### Build the postgres Dockerfile
+
+```
+docker compose build
+```
+
+### Spin up the containers
+
+```
+docker compose up
+```
+
+> You can optionally add -d flag to run it in detatched mode
+>
+> If you run in detatched mode, use:
+> ```
+> docker compose logs -f
+> ```
+> to view the logs
+
+### Stop the containers
+
+```
+docker compose down
+```
 
 ## Global Tables
 
