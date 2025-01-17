@@ -39,7 +39,9 @@ docker compose up
 ```
 
 > You can optionally add -d flag to run it in detatched mode
->
+> ```
+> docker compose up -d
+> ```
 > If you run in detatched mode, use:
 > ```
 > docker compose logs -f
@@ -51,6 +53,11 @@ docker compose up
 ```
 docker compose down
 ```
+
+> If you want to also remove the volumes and network, use the -v flag:
+> ```
+> docker compose down -v
+> ```
 
 ## Global Tables
 
