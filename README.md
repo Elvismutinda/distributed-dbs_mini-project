@@ -59,6 +59,33 @@ docker compose down
 > docker compose down -v
 > ```
 
+## Accesing database terminal
+### PostgreSQL
+
+```
+docker exec -it machakos_site psql -U elvis87 -d soishop
+
+# automatically enters the soishop database using the "-d soishop"
+```
+
+### MySQL
+
+```
+docker exec -it nairobi_site mysql -h 127.0.0.1 -P 3306 -u elvis87 -p
+
+# once the terminal is open, switch to the database
+USE soishop;
+```
+
+### MariaDB
+
+```
+docker exec -it makueni_site mysql -h 127.0.0.1 -P 3306 -u elvis87 -p
+
+# once the terminal is open, switch to the database
+USE soishop;
+```
+
 ## Global Tables
 
 | Table | Field Description |
