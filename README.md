@@ -16,7 +16,7 @@ _The company Soi is an online retailer that sells a variety of products such as 
 | --- | --- | --- | --- |
 | Machakos (Decision site) | PostgreSQL | Windows | machakos_site |
 | Nairobi  | MySQL | Linux | nairobi_site |
-| Makueni | SQLite | Linux | makueni_site |
+| Makueni | MariaDB | Linux | makueni_site |
 
 ## Docker Setup
 
@@ -285,9 +285,9 @@ m2: Orders_count <= 3
 
 
 ```sql
-SELECT * FROM customers WHERE orders_count > 10;
+SELECT * FROM customers WHERE orders_count > 3;
 
-SELECT * FROM customers WHERE orders_count <= 10;
+SELECT * FROM customers WHERE orders_count <= 3;
 ```
 
 ### Application 3 - Find the total number of products in stock for each supplier
