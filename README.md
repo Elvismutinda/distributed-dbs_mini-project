@@ -10,7 +10,7 @@ Use the above environment to demonstrate your grasp of fragmentation and reconst
 
 ## Domain - Ecommerce
 
-_The company Soi is an online retailer that sells a variety of products such as clothing, electronics, books, and home appliances.._
+_The company Soi is an online retailer that sells a variety of products such as clothing, electronics, books, and home appliances.Nitras wants to use a distributed database to store and manage its inventory, orders, customers, and suppliers across 3 different counties._
 
 | 3 sites | 3 different Database Platforms | at least 2 Operating Systems | hostnames |
 | --- | --- | --- | --- |
