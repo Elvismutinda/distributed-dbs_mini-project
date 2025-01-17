@@ -436,6 +436,8 @@ These are the views that have been implemented in the decision site.
 ### Application 1
 
 ```sql
+-- Reconstructs the inventory table that was fragmented category wise
+
 CREATE VIEW inventory_c_reconstructed AS
 -- Combine the fragments using UNION ALL
 SELECT DISTINCT * 
@@ -451,18 +453,21 @@ FROM inventory_machakos;
 ### Application 2
 
 ```sql
+-- Reconstructs the customers table that was fragmented orders wise
+
 CREATE VIEW customers_reconstructed AS
 SELECT * 
 FROM customers_orders_gt_3
 UNION ALL
 SELECT * 
 FROM customers_orders_lte_3;
-
 ```
 
 ### Application 3
 
 ```sql
+-- Reconstructs the inventory table that was fragmented suppliers wise
+
 CREATE VIEW inventory_s_reconstructed AS
 -- Combine the fragments using UNION ALL
 SELECT *
