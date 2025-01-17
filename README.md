@@ -28,29 +28,29 @@ To run the databases services, run the following commands in your terminal
 
 ### Build the postgres Dockerfile
 
-```
+```bash
 docker compose build
 ```
 
 ### Spin up the containers
 
-```
+```bash
 docker compose up
 ```
 
 > You can optionally add -d flag to run it in detatched mode
-> ```
+> ```bash
 > docker compose up -d
 > ```
 > If you run in detatched mode, use:
-> ```
+> ```bash
 > docker compose logs -f
 > ```
 > to view the logs
 
 ### Stop the containers
 
-```
+```bash
 docker compose down
 ```
 
@@ -62,7 +62,7 @@ docker compose down
 ## Accesing database terminal
 ### PostgreSQL
 
-```
+```bash
 docker exec -it machakos_site psql -U elvis87 -d soishop
 
 # automatically enters the soishop database using the "-d soishop"
@@ -70,7 +70,7 @@ docker exec -it machakos_site psql -U elvis87 -d soishop
 
 ### MySQL
 
-```
+```bash
 docker exec -it nairobi_site mysql -h 127.0.0.1 -P 3306 -u elvis87 -p
 
 # once the terminal is open, switch to the database
@@ -79,7 +79,7 @@ USE soishop;
 
 ### MariaDB
 
-```
+```bash
 docker exec -it makueni_site mysql -h 127.0.0.1 -P 3306 -u elvis87 -p
 
 # once the terminal is open, switch to the database
