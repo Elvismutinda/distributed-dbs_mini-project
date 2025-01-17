@@ -230,8 +230,8 @@ INSERT INTO orders (id, customer_id, date, item, status, total, shipped_from, sh
 
 ## Applications
 
-- Application 1 - Find the name and price of the least ordered product in each store/branch
-- Application 2 - Find the email and name of the customers who have ordered more than 10 times
+- Application 1 - Find the name and price of the cheapest product in each category
+- Application 2 - Find the email and name of the customers who have ordered more than 3 times
 - Application 3 - Find the total number of products in stock for each supplier
 
 ### Application 1 - Find the name and price of the cheapest product in each category
